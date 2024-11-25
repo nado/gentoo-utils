@@ -1,0 +1,6 @@
+proxy_set_header Referer $http_referer;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $proxy;
+proxy_set_header X-Real-Port $remote_port;
+proxy_set_header X-Forwarded-For $remote_addr;
+proxy_set_header X-Forwarded-Uri $request_uri;

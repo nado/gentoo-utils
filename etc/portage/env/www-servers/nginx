@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+post_pkg_postinst() {
+	if [[ ! -e /etc/ssl/nginx/dhparam.pem ]]; then
+		ebegin "Generating /etc/ssl/nginx/dhparam.pem"
+			mkdir -p /etc/ssl/nginx
+			openssl dhparam -out /etc/ssl/nginx/dhparam.pem 4096
+		eend $?
+	fi
+}

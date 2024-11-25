@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+pre_pkg_prerm() {
+	if [ -f "/usr/src/linux-${KV_FULL}/.config" ]; then
+		elog "Saving /usr/src/linux-${KV_FULL}/.config to /etc/kernel/configs/linux-${KV_FULL}/.config"
+		mkdir -p "/etc/kernel/configs/linux-${KV_FULL}" || die
+		cp --backup=t "/usr/src/linux-${KV_FULL}/.config" "/etc/kernel/configs/linux-${KV_FULL}/" || die
+	fi
+}
+
+post_pkg_postrm() {
+	ebegin "Cleaning up linux-${KV_FULL} artifacts"
+	rm -rf "/usr/src/linux-${KV_FULL}"
+	rm -rf "/lib/modules/${KV_FULL}"
+	eend $?
+}

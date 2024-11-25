@@ -1,0 +1,5 @@
+location /.well-known/acme-challenge {
+	access_log /var/log/nginx/certbot-access.log;
+	error_log /var/log/nginx/certbot-error.log;
+	alias /var/www/dehydrated;
+}

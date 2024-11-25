@@ -1,0 +1,6 @@
+proxy_set_header X-Forwarded-Ssl on;
+proxy_set_header X-Original-URL $scheme://$host$request_uri;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Forwarded-Protocol $scheme;
+proxy_set_header X-Forwarded-Host $host;
+proxy_redirect http:// https://;
